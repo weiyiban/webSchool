@@ -29,7 +29,7 @@
           <div class="clearfix"></div>
         </div>
       </div>
-      <div class="noticeBulletin">
+      <!-- <div class="noticeBulletin">
         <span>通知公告</span>
         <span class="noticeItem" v-for="item in notice" :key="item">[{{ item.releaseTime }}] {{ item.title }}</span>
         <a href="" class="pull-right">更多>></a>
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -118,16 +118,16 @@ export default {
       ],
     };
   },
-  // mounted(){
-  //   this.$http.get('http://192.168.1.199:8088/web/kaola/getKaoLaDynamic') //把url地址换成你的接口地址即可
-  //   .then(res => {
-  //    this.notice = res; //把取item的数据赋给 item: []中
-  //    console.log(res);
-  //   })
-  //   .catch(err => {
-  //    alert('请求失败');
-  //   })
-  // }
+  mounted(){
+    this.$axios.get('web/kaola/getKaoLaDynamic').then(res => {
+     this.notice = res;
+     console.log(res);
+      alert('请求成功')
+    })
+    .catch(err => {
+     alert('请求失败');
+    })
+  }
 };
 </script>
 <style scoped>

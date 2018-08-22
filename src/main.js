@@ -9,7 +9,10 @@ import './common/common.css'
 import axios from 'axios'
 
 Vue.config.productionTip = false
-Vue.prototype.$http = axios
+Vue.prototype.$axios = axios
+console.log(process.env.BASE_API)
+axios.defaults.baseURL = process.env.BASE_API
+
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
