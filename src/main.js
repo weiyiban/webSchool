@@ -7,11 +7,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './common/common.css'
 import axios from 'axios'
+import '@/config/api'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
-console.log(process.env.BASE_API)
-axios.defaults.baseURL = process.env.BASE_API
 
 Vue.use(ElementUI)
 /* eslint-disable no-new */

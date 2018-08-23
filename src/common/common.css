@@ -32,7 +32,7 @@ body {
   background: #f0f2f5;
   font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
   font-size: 14px;
-  color: #444;
+  color: #333;
 }
 .pull-left{
     float: left;
@@ -139,3 +139,31 @@ body {
 .auto{
     margin: auto;
 }
+.backCommon{
+    background: url('../assets/backgroundLogo.png')
+}
+/* 公共返回部分样式 */
+.publicList{
+    width: 1200px;
+    margin: auto;
+  }
+  .publicBack{
+    padding: 24px 0 21px 35px;
+    background-color: #ffffff;
+    margin-top: 25px;
+    border-radius: 8px;
+  }
+  .publicBack span{
+    color: #999999;
+    font-size: 16px;
+  }
+  .publicListData{
+    background-color: #ffffff;
+    padding: 45px 40px 40px 40px;
+    border-radius: 8px;
+  }
+  .publicListData h2{
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
