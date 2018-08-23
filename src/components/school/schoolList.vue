@@ -11,12 +11,12 @@
         <el-form :inline="true" :model="searchList" class="demo-form-inline">
           <el-form-item label="省份" size="mini">
             <el-select v-model="searchList.province" placeholder="">
-                <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
+                <el-option v-for="item in provinceList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="城市" size="mini">
             <el-select v-model="searchList.city" placeholder="">
-                <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
+                <el-option v-for="item in cityList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="查询" size="mini">
@@ -86,7 +86,7 @@ export default {
       pageTotal:1000 // 总共多少数据
     }
   },
-  mounted: function() {
+  mounted () {
     this.getTableData()
   },
   methods: {
@@ -109,7 +109,7 @@ export default {
       // console.log(rows[index])
       // this.dialogChangeForm = true;
       // this.changeForm = rows[index]
-      this.$router.push({path:'/updataSchool'})
+      this.$router.push({path:'/updataSchool',query:{row:JSON.stringify(rows[index])}})
       // console.log(index,rows[index])
     },
     // 删除

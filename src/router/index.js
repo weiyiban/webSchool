@@ -34,7 +34,7 @@ export default new Router({
       component: addSchool
     },
     {
-      path: '/updataSchool',
+      path: '/updataSchool/:row',
       name: 'updataSchool',
       component: updataSchool
     },

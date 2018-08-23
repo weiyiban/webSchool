@@ -14,14 +14,14 @@
                     <el-form-item label="驾校编号">
                         <el-input v-model="updateSchool.code" auto-complete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="所在城市">
+                    <!-- <el-form-item label="所在城市">
                         <el-select v-model="updateSchool.province" placeholder="">
                             <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
                         </el-select>
                         <el-select v-model="updateSchool.city" placeholder="">
                             <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
                         </el-select>
-                    </el-form-item>
+                    </el-form-item> -->
                     <el-form-item label="是否显示">
                         <el-radio-group v-model="updateSchool.display">
                         <el-radio label="展示"></el-radio>
@@ -54,6 +54,7 @@
     </div>
 </template>
 <script>
+
 import publicHead from '@/components/publicHead'
 export default {
     name:'',
@@ -71,6 +72,11 @@ export default {
                 display:'',
             }
         }
+    },
+    created () {
+        console.log(this.$route.params.row)
+        this.updateSchool = this.$route.params.row
+        
     },
     methods: {
         updataschool() {

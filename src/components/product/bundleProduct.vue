@@ -7,43 +7,31 @@
       </div>
       <!-- 搜索表单 start -->
       <div class="publicListData mt1">
-        <h2>驾校列表</h2>
-        <el-form :inline="true" :model="searchList" class="demo-form-inline">
-          <el-form-item label="省份" size="mini">
-            <el-select v-model="searchList.province" placeholder="">
-                <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="城市" size="mini">
-            <el-select v-model="searchList.city" placeholder="">
-                <el-option v-for="item in typeList" :key="item.scid" :label="item.cname" :value="item.scid"></el-option>
-            </el-select>
-          </el-form-item>
+        <h2>管理套餐</h2>
+        <el-form :inline="true" :model="searchProductList" class="demo-form-inline">
           <el-form-item label="查询" size="mini">
-            <el-input v-model="searchList.name" placeholder=""></el-input>
+            <el-input v-model="searchProductList.name" placeholder=""></el-input>
           </el-form-item>
           <el-form-item size="mini">
-            <el-button @click="getTableData">查询</el-button>
+            <el-button @click="searchBundleProduct">查询</el-button>
           </el-form-item>
-          <el-button @click="addschool" class="pull-right" size="mini">新增</el-button>
+          <el-button @click="addBundleProduct" class="pull-right" size="mini">增加</el-button>
         </el-form>
         <!-- 搜索表单 end -->
         
         <!-- 表格 start -->
         <el-table :data="schoolListData" style="width: 100%">
-          <el-table-column prop="name" label="驾校名称" />
-          <el-table-column prop="code" label="编号" />
-          <el-table-column prop="province" label="省份" />
-          <el-table-column prop="city" label="城市" />
-          <el-table-column prop="products" label="套餐数量" />
-          <el-table-column prop="customers" label="学员数量" />
-          <el-table-column prop="display" label="平台展示" />
+          <el-table-column prop="name" label="招生产品名称" />
+          <el-table-column prop="driverlicenseType" label="车型" />
+          <el-table-column prop="classType" label="班别" />
+          <el-table-column prop="currentPrice" label="费用" />
+          <el-table-column prop="trainMethod" label="培训方式" />
+          <el-table-column prop="classDescription" label="套餐特色" />
+          <el-table-column prop="feeDescription" label="费用说明" />
+          <el-table-column prop="display" label="状态" />
 
           <el-table-column fixed="right" label="操作" width="150">
             <template slot-scope="scope">
-              <el-button @click.native.prevent="changeRow(scope.$index, schoolListData)" type="text" size="small">
-                管理套餐
-              </el-button>
               <el-button @click.native.prevent="changeRow(scope.$index, schoolListData)" type="text" size="small">
                 编辑
               </el-button>
@@ -75,23 +63,21 @@ export default {
   data() {
     return {
       // 查询表单
-      searchList: {
-        province: '',
-        city: '',
+      searchProductList: {
         name:''
       },
-      schoolListData: [], // 表格默认值
+      bundleProductListData: [], // 表格默认值
       currentPage:1, // 选中页
       pageSize:100, // 每页多少行
       pageTotal:1000 // 总共多少数据
     }
   },
   mounted: function() {
-    this.getTableData()
+    this.searchBundleProduct()
   },
   methods: {
     // 查询
-    getTableData() {
+    searchBundleProduct() {
       this.$axios.get('/api/web/school/searchDriverSchool', this.searchList).then(res => {
         this.schoolListData = res.data.list;
         this.currentPage = res.currentPage; // 选中页
