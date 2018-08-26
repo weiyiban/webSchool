@@ -13,9 +13,15 @@
         <img class="carousel-img" src="../assets/banner01.png" alt="">
         <div class="carousel-login">
           <h4>登录使用</h4>
-          <el-input placeholder="用户名" class="carousel-login-input" prefix-icon="el-icon-search" v-model="loginFrom.userName"></el-input>
-          <el-input placeholder="密码" class="carousel-login-input" prefix-icon="el-icon-search" v-model="loginFrom.password"></el-input>
-          <button type="button" class="carousel-login-button" @click="onLogin">登录</button>
+          <el-form :model="loginFrom" :rules="loginRules" ref="loginruleForm" class="demo-form-inline">
+            <el-form-item label="" prop="username">
+              <el-input placeholder="用户名" prefix-icon="el-icon-search" v-model="loginFrom.username" auto-complete="on"/>
+            </el-form-item>
+            <el-form-item label="" prop="password">
+              <el-input placeholder="密码" prefix-icon="el-icon-search" v-model="loginFrom.password" @keyup.enter.native="onLogin"/>
+            </el-form-item>
+          </el-form> 
+          <button type="button" class="carousel-login-button" @click="onLogin('loginruleForm')">登录</button>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -77,35 +83,52 @@ export default {
       ],
       service:[
         {
-          url:require("../assets/01.png"),
+          url:require('../assets/01.png'),
           name:'驾校',
           content:'为驾校提供驾校招生、教练管理、考试统计、学员管理、约车系统等多种服务'
         },
         {
-          url:require("../assets/02.png"),
+          url:require('../assets/02.png'),
           name:'教练',
           content:'文字文字文字文字文字文字文字文字文字文字'
         },
         {
-          url:require("../assets/03.png"),
+          url:require('../assets/03.png'),
           name:'学员',
           content:'文字文字文字文字文字文字文字文字文字文字'
         }
       ],
-
       loginFrom:{
-      	userName:'',
+      	username:'',
       	password:''
+      },
+      loginRules: {
+          username: [
+            { required: true, message: '请输入账号', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, message: '请输入密码', trigger: 'blur' }
+          ]
       }
     }
   },
    methods: {
-   	onLogin(){
-   		this.$axios.post('/api/web/user/userLogin',this.loginFrom).then(res => {
-	     this.$router.push({path:'/schoolList'})
-	    }).catch(err => {
-	     this.$router.push({path:'/schoolList'})
-	    })
+   	onLogin(formName){
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios.post('/api/web/user/userLogin',this.loginFrom).then(res => {
+            if(res.data.code == "0"){
+              this.$message({type: 'success',message: '登陆成功'})
+              this.$router.push({path:'/admin'})
+              sessionStorage.setItem("token",res.data.returnValue)
+            }else{
+              this.$message({type: 'error',message: '账号或密码错误'})
+            }
+          }).catch(err => {
+            // this.$message({type: 'error',message: '账号或密码错误'})
+          })
+        }
+      })
    	}
    }
 };

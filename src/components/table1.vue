@@ -209,7 +209,7 @@ export default {
     changeRow(index, rows) {
       this.dialogChangeForm = true;
       this.changeForm = rows[index]
-       console.log(index,rows[index])
+      console.log(index,rows[index])
     },
     // 确定修改
     onChangeTableData(){

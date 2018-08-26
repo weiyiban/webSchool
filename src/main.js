@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './common/common.css'
 import axios from 'axios'
 import '@/config/api'
+import '@/config/permission'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios

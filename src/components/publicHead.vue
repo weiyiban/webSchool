@@ -12,10 +12,10 @@
                     <span>考啦考啦驾校联盟</span>
                     <h1 class="mt1">系统后台</h1>
                 </div>
-                <el-input placeholder="查询" v-model="input5" class="input-with-select inputRedefinition" size="mini">
+                <el-input placeholder="查询" class="input-with-select inputRedefinition" size="mini">
                     <el-button slot="append" icon="el-icon-search"></el-button>
                 </el-input>
-                <span class="pull-right signOut">退出</span>
+                <router-link class="pull-right signOut" :to="{path:'/login'}">退出</router-link>
                 <div class="clearfix"></div>
             </div>
         </div>

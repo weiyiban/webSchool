@@ -4,9 +4,12 @@ import index from '@/app'
 import login from '@/components/login'
 import schoolList from '@/components/school/schoolList'
 import addSchool from '@/components/school/addSchool'
-import updataSchool from '@/components/school/updataSchool'
-import bundleProduct from '@/components/product/bundleProduct'
-import addBundleProduct from '@/components/product/addBundleProduct'
+import bundleProduct from '@/components/school/product/bundleProduct'
+import addBundleProduct from '@/components/school/product/addBundleProduct'
+import complaintList from '@/components/complaints/complaintList'
+import usersList from '@/components/user/usersList'
+import addUser from '@/components/user/addUser'
+import admin from '@/components/admin'
 
 Vue.use(Router)
 
@@ -24,6 +27,11 @@ export default new Router({
       component: login
     },
     {
+      path: '/admin',
+      name: 'admin',
+      component: admin
+    },
+    {
       path: '/schoolList',
       name: 'schoolList',
       component: schoolList
@@ -34,12 +42,7 @@ export default new Router({
       component: addSchool
     },
     {
-      path: '/updataSchool/:row',
-      name: 'updataSchool',
-      component: updataSchool
-    },
-    {
-      path: '/bundleProduct',
+      path: '/bundleProduct/:code',
       name: 'bundleProduct',
       component: bundleProduct
     },
@@ -47,6 +50,21 @@ export default new Router({
       path: '/addBundleProduct',
       name: 'addBundleProduct',
       component: addBundleProduct
+    },
+    {
+      path: '/complaintList',
+      name: 'complaintList',
+      component: complaintList
+    },
+    {
+      path: '/usersList',
+      name: 'usersList',
+      component: usersList
+    },
+    {
+      path: '/addUser',
+      name: 'addUser',
+      component: addUser
     }
   ]
 })
